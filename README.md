@@ -2,10 +2,6 @@
 
 Clone the project
 
-```bash
-  git clone https://git.delameta.id/orizkis/boilerplate-expressjs.git
-```
-
 Go to the project directory
 
 ```bash

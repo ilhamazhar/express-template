@@ -10,7 +10,8 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "node test.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migration": "node src/core/postgre/migration.js"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --fix"

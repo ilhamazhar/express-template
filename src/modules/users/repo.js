@@ -3,7 +3,7 @@ const { NotFoundError } = require('../../exceptions');
 
 const selectUsers = async (query) => {
   const { limit, page, order, orderBy, filter, rangeTime } = query;
-  const offset = page * limit;
+  const offset = (page - 1) * limit;
 
   let queryData = 'SELECT * FROM users';
   let queryCount = 'SELECT COUNT(id) AS total FROM users';
@@ -27,7 +27,11 @@ const selectUsers = async (query) => {
     queryData += filterQuery;
     queryCount += filterQuery;
   }
-  queryData += ` ORDER BY ${orderBy} ${order} LIMIT $1 OFFSET $2`;
+
+  queryData += ` ORDER BY ${
+    orderBy || 'created_at'
+  } ${order} LIMIT $1 OFFSET $2`;
+  console.log(order, orderBy);
 
   const valuesQueryData = [limit, offset];
   const data = await pool.query(queryData, valuesQueryData);
